@@ -22,7 +22,22 @@ public class Product {
         if (item == null) {
             throw new IllegalArgumentException("Item cannot be a null value");
         }
+        if (items.contains(item)) {
+            return;
+        }
         items.add(item);
+        item.setProduct(this);
+    }
+
+    public void removeItem(Item item) {
+        if (item == null) {
+            return;
+        }
+        if (!this.items.contains(item)) {
+            return;
+        }
+        this.items.remove(item);
+        item.removeProduct(this);
     }
 
     public String getName() {
